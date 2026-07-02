@@ -1,3 +1,7 @@
+"""
+@author: dulph
+@version: 1.0.0
+"""
 import regex
 from_url = False #Default mode, requires only regex module
 
