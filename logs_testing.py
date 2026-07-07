@@ -88,10 +88,10 @@ output="""This issue must be dealt with in order for the profile to successfully
 For various reasons - configuration (config) files in modded Minecraft profiles can sometimes become corrupted and must be removed for the profile to load correctly.
 
 **Options to remove corrupted config files:**
-- Read the log file and delete the file mentioned nearby to the `Not enough data available` message.  Try to launch the profile again and repeat the process reading logs and deleting files until all have been found.
+- Read the log file and delete the file mentioned nearby to the `Not enough data available` message. Try to launch the profile again and repeat the process reading logs and deleting files until all have been found.
 
-- Get the community created [helper script from this Curseforge community github site](https://github.com/CurseForgeCommunity/Script-Tools) and run it to scan for, and remove corrupted config files.  
-    - Place a copy of the script file in the profile folder you would like to repair.  To find the profile folder - Enter the profile screen in the Curseforge app, go to **options** <:zCFmenu:1319318631770751086> and then select **open folder**
+- Get the community created [helper script from this Curseforge community github site](https://github.com/CurseForgeCommunity/Script-Tools) and run it to scan for, and remove corrupted config files.
+    - Place a copy of the script file in the profile folder you would like to repair. To find the profile folder - Enter the profile screen in the Curseforge app, go to **options** <:zCFmenu:1319318631770751086> and then select **open folder**
     - Run the file which you have copied to the profile folder, wait for it to finish scanning - and confirm if you would like to remove what it found."""
 print(search_content(re, content, output), end="")
 
@@ -102,8 +102,8 @@ output="""The configuration file `%GROUP1%` is corrupted. This often happens due
 The file must be removed to fix the profile.
 **Options to remove corrupted config files:**
 - Find the file mentioned above (probably inside the profiles `config` folder, however `server` type configs are sometimes in `saves/worldname/serverconfig` instead) and delete it.
-- Get the community created [helper script from this Curseforge community github site](https://github.com/CurseForgeCommunity/Script-Tools) and run it to scan for, and remove corrupted config files.  
-    - Place a copy of the script file in the profile folder you would like to repair.  To find the profile folder - Enter the profile screen in the Curseforge app, go to **options** <:zCFmenu:1319318631770751086> and then select **open folder**
+- Get the community created [helper script from this Curseforge community github site](https://github.com/CurseForgeCommunity/Script-Tools) and run it to scan for, and remove corrupted config files.
+    - Place a copy of the script file in the profile folder you would like to repair. To find the profile folder - Enter the profile screen in the Curseforge app, go to **options** <:zCFmenu:1319318631770751086> and then select **open folder**
     - Run the file which you have copied to the profile folder, wait for it to finish scanning - and confirm if you would like to remove what it found."""
 print(search_content(re, content, output), end="")
 
@@ -148,7 +148,7 @@ To fix this you can install this mod: https://www.curseforge.com/minecraft/mc-mo
 print(search_content(re, content, output), end="")
 
 #Problem 9.2 (MixinExtras incorrect inclusion)
-re=r"Module (?:mixinextras.neoforge|MixinExtras) contains package [a-zA-Z0-9_.-]+, module (?:mixinextras.neoforge|MixinExtras) exports package [a-zA-Z0-9_.-]+ to (?:mixinextras.neoforge|MixinExtras)|Modules MixinExtras and mixinextras\.neoforge export package|Modules mixinextras\.neoforge and MixinExtras export package"
+re=r"Module (?:mixinextras\.neoforge|MixinExtras) contains package [a-zA-Z0-9_.-]+, module (?:mixinextras\.neoforge|MixinExtras) exports package [a-zA-Z0-9_.-]+ to (?:mixinextras\.neoforge|MixinExtras)|Modules MixinExtras and mixinextras\.neoforge export package|Modules mixinextras\.neoforge and MixinExtras export package"
 output="""You have mods including a NeoForge specific version of MixinExtras on Forge.
 
 Install [Mixin Extras NeoForge on Forge Fix](https://www.curseforge.com/minecraft/mc-mods/mixin-extras-neoforge-on-forge-fix)
@@ -163,7 +163,7 @@ print(search_content(re, content, output), end="")
 
 #Problem 11 (Xenon/Embeddium/Rubidium conflict)
 re=r"(Mod ID: 'rubidium' from mod files: xenon)|(Mod ID: 'embeddium' from mod files: xenon)"
-output="""It has been detected that the mod named `Xenon` has a conflict with other rendering mod(s) present.  
+output="""It has been detected that the mod named `Xenon` has a conflict with other rendering mod(s) present.
 
 `Xenon` is a fork of, and conflicts with, the mods named `Embeddium` and `Rubidium`.
 
@@ -177,12 +177,12 @@ print(search_content(re, content, output), end="")
 
 #Problem 13 (Unsupported mods in profile) #obsolete
 re=r"java\.lang\.UnsupportedClassVersionError"
-output="""- Your log contains at least one error message reporting a mod file which is made (compiled) for a different Java version.  
-- This means that the mod file(s) are made for a different Minecraft version also.  
-- You will need to either remove the mod(s) entirely, or replace with a file for the same mod project but compatible with the same Minecraft version of the profile.  
+output="""- Your log contains at least one error message reporting a mod file which is made (compiled) for a different Java version.
+- This means that the mod file(s) are made for a different Minecraft version also.
+- You will need to either remove the mod(s) entirely, or replace with a file for the same mod project but compatible with the same Minecraft version of the profile.
 [List of **class file versions** vs **Java versions**](https://javaalmanac.io/bytecode/versions/)
 
-You should text search for `java.lang.UnsupportedClassVersionError` in the log file, and read the message language nearby.  The mod(s) responsible may be listed in the message.
+You should text search for `java.lang.UnsupportedClassVersionError` in the log file, and read the message language nearby. The mod(s) responsible may be listed in the message.
 
 `Class version 52 - MC 1.16.5 and older
 Class version 61 - MC 1.18 to 1.20.4
@@ -208,19 +208,19 @@ print(search_content(re, content, output), end="")
 
 #Problem 14 (MC launching with wrong videocard)
 re="Pixel format not accelerated"
-output="""The message 'Pixel format not accelerated' was found in your log file.  
-This means that the game requires a dedicated graphics card be used with the game on launch.  
-- Check that your the current version of your graphics card drivers are up to date by using your card's installed driver update tool, or by visiting their website (use the following message command to get a website list):  
-!graphicsdrivers  
-- If, after trying to update graphics drivers the same message results, use the following message command and follow the instructions:  
+output="""The message 'Pixel format not accelerated' was found in your log file.
+This means that the game requires a dedicated graphics card be used with the game on launch.
+- Check that your the current version of your graphics card drivers are up to date by using your card's installed driver update tool, or by visiting their website (use the following message command to get a website list):
+!graphicsdrivers
+- If, after trying to update graphics drivers the same message results, use the following message command and follow the instructions:
 !mc-videocard"""
 print(search_content(re, content, output), end="")
 
 #Problem 15 (NBT too long)
 re=r"(Tried to read NBT tag with too high complexity)|(Tried to read NBT tag that was too big)"
 output="""For one reason or another you have objects in your world with NBT data with a depth greater than 512. For example, a backpack with too many items or too much NBT data.
-You can add this mod to try and get around this limitation.  
-*(Note this is not a guarantee that it will work!)*  
+You can add this mod to try and get around this limitation.
+*(Note this is not a guarantee that it will work!)*
 
 [Mod - Long NBT Killer](https://www.curseforge.com/minecraft/mc-mods/long-nbt-killer)"""
 print(search_content(re, content, output), end="")
@@ -260,7 +260,6 @@ The easiest way to fix this is to delete/rename your options.txt file. You could
 %GROUP1%=%GROUP3%
 ```"""
 print(search_content(re, content, output), end="")
-
 
 if not from_url:
 	opened.close()
