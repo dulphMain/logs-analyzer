@@ -5,3 +5,4 @@ Allows to diagnose the most common errors from Minecraft logs. Use the from_url 
 - ~~Indicating which config file is corrupted.~~ Added to CurseForge Bot
 - ~~Detecting more mod version errors.~~ Added to CurseForge Bot
 - ~~Indicating which mods have been compiled to wrong Java version.~~ Added to CurseForge Bot
+- Works (CurseForge Bot doesn't)
