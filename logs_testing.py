@@ -67,7 +67,7 @@ It needs %GROUP3%version %GROUP4% %GROUP5%%GROUP6%%GROUP7%%GROUP8%, but it is cu
 print(search_content(re, content, output), end="")
 
 #Problem 1 version 2 (missing/unsupported dependency)
-re=r"(Missing or unsupported|Unsupported installed) (mandatory|optional) dependencies:\n\s*Mod ID: '([a-zA-Z0-9_-]+)', Requested by: '([a-zA-Z0-9_-]+)', Expected range: '\[([0-9\.]+),\)', Actual version: '([0-9\.]+)'"
+re=r"(Missing or unsupported|Unsupported installed) (mandatory|optional) dependencies:\n\s*Mod ID: '([a-zA-Z0-9_-]+)', Requested by: '([a-zA-Z0-9_-]+)', Expected range: '\[([0-9\.]+),\)', Actual version: '([0-9\.]+|\[MISSING\])'"
 output="""The mod `%GROUP4%` requires the mod `%GROUP3%` installed.
 It needs version %GROUP5%, but is currently %GROUP6%!"""
 print(search_content(re, content, output), end="")
