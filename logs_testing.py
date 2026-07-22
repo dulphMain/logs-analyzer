@@ -52,13 +52,16 @@ if from_url:
 		frame = soup.find(id="rawframe")
 		attempts_count += 1
 	
+	if frame.pre=="<pre><p>File not available.</p><p>Paste files are kept for up to 7 days with your privacy in mind.</p></pre>":
+		raise FetchingError("ERROR: The file doesn't exist anymore")
 	if frame == None:
-		raise FetchingError("ERROR: fetching failed. Please check the following:\n- The URL is a discord-paste.curseforge.com paste\n- The paste at this URL still exists")
+		raise FetchingError("ERROR: Fetching failed. Please check the following:\n- The URL is a discord-paste.curseforge.com paste\n- The paste at this URL still exists")
 	content = frame.pre.string
 else:
 	file=input("File path ? ")
 	opened=open(file)
 	content=opened.read()
+
 
 #Problem 1 (incorrect/missing dependency)
 re=r"Mod (?:§\w)*([a-z0-9_-]{2,64})(?:§\w)* requires (?:§\w)*([a-z0-9_-]{2,64})(?:§\w)* (?:§\w)*(between )?(?:§\w)*([0-9.]+) (and )?((?:[0-9.]+(?: \(inclusive\))?)|(?:or above))(, and below )?(?:§\w)*([0-9.]+)?(?:§\w)*\n\s*(?:§\w)*Currently, (?:§\w)*[a-z0-9_-]{2,64}(?:§\w)* is (?:§\w)*((?:not installed)|[0-9.]+)"
@@ -82,7 +85,7 @@ output="""It has been detected that the log has an incompatible mod version of `
 print(search_content(re, content, output), end="")
 
 #Problem 3 (corrupted config files) #obsolete
-re=r"com\.electronwill\.nightconfig\.core\.io\.ParsingException: Not enough data available"
+re=r"com\.electronwill\.nightconfig\.core\.io\.ParsingException: Not enough data available" #to update (or obsolete ?)
 output="""This issue must be dealt with in order for the profile to successfully load.
 
 For various reasons - configuration (config) files in modded Minecraft profiles can sometimes become corrupted and must be removed for the profile to load correctly.
@@ -96,8 +99,8 @@ For various reasons - configuration (config) files in modded Minecraft profiles 
 print(search_content(re, content, output), end="")
 
 #Problem 3 diagnosis 2 (corrupted config files -> detailed)
-re=r"net\.minecraftforge\.fml\.config\.ConfigFileTypeHandler\$ConfigLoadingException: Failed loading config file ([a-zA-Z0-9_\.-]+) of type ([A-Z]+) for modid ([a-zA-Z_-]+)"
-output="""The configuration file `%GROUP1%` is corrupted. This often happens due to extreme crashes such as JVM errors or bluescreens.
+re=r"net\.minecraftforge\.fml\.config\.ConfigFileTypeHandler\$ConfigLoadingException: Failed loading config file ([a-zA-Z0-9_\.-]+) of type ([A-Z]+) for modid ([a-zA-Z_-]+)|Failed to load ([a-zA-Z0-9]+) config from ⋖APPDIR⋗\\Instances\\([a-zA-Z0-9 ._-]+)\\config\\([a-zA-Z0-9._-]+)"
+output="""The configuration file `%GROUP1%%GROUP6%` is corrupted. This often happens due to extreme crashes such as JVM errors or bluescreens.
 
 The file must be removed to fix the profile.
 **Options to remove corrupted config files:**
