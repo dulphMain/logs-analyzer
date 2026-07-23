@@ -264,5 +264,10 @@ The easiest way to fix this is to delete/rename your options.txt file. You could
 ```"""
 print(search_content(re, content, output), end="")
 
+#Problem 21 (client mod on server)
+re=r"Failed to create mod instance. ModID: ([a-zA-Z0-9]+), class [a-zA-Z.]+\n+java\.lang\.BootstrapMethodError: java\.lang\.RuntimeException: Attempted to load class [a-zA-Z\/]+ for invalid dist [a-zA-Z_]+"
+output="Mod `%GROUP1%` is not meant to be loaded on server. Remove it to fix the crash."
+print(search_content(re, content, output), end="")
+
 if not from_url:
 	opened.close()
