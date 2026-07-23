@@ -1,8 +1,25 @@
 # logs-analyzer
-Allows to diagnose the most common errors from Minecraft logs. Use the from_url variable to toggle between fetching from a local file and fetching from a discord-paste.curseforge.com URL. Can analyze latest.log and launcher_log.txt files.
+Allows to diagnose the most common errors from Minecraft logs. Use the from_url variable to toggle between fetching from a local file and fetching from a discord-paste.curseforge.com or paste.ntms.link URL. Can analyze latest.log and launcher_log.txt files.
 
-## Additions compared to Curseforge bot
-- ~~Indicating which config file is corrupted.~~ Added to CurseForge Bot
-- ~~Detecting more mod version errors.~~ Added to CurseForge Bot
-- ~~Indicating which mods have been compiled to wrong Java version.~~ Added to CurseForge Bot
-- Works (CurseForge Bot doesn't always)
+## Detection features :
+- incorrect/missing dependencies
+- missing/unsupported dependency
+- incompatible Corgilib version
+- corrupted config files
+- red herring errors
+- duplicate mods
+- conflict between Rubidium and Embeddium
+- outdated drivers
+- Mac display issues
+- MixinExtras conflict
+- MixinExtras incorrect inclusion
+- Xenon/Embeddium/Rubidium conflict
+- maximum ID range (for 1.12)
+- Unsupported mods in profile
+- Minecraft launching with wrong videocard
+- NBT too long
+- Distant Horizon and Oculus/Iris not compatible
+- important tag failing to load
+- mod accessing a single threaded resource from multiple threads
+- malformed options.txt
+- client mod on server
