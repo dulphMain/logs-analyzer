@@ -262,7 +262,7 @@ output = "Mod %GROUP1% encountered an error during loading. Try removing it."
 print(search_content(re, content, output), end="")
 
 #Experimental : invalid mod IDs
-re = r"Invalid modId found in file [A-Z]:(\\[a-zA-Z_0-9*.-]+)*\\(.+\.jar,? ?) - ([\w' ]{2,64}) does not match the standard: \^\[a-z\]\[a-z0-9_\]\{1,63\}\$"
+re = r"Invalid modId found in file [A-Z]:(\\[a-zA-Z_0-9*. -]+)*\\(.+\.jar,? ?) - ([\w' ]{2,64}) does not match the standard: \^\[a-z\]\[a-z0-9_\]\{1,63\}\$"
 output = "Mod %GROUP3% has an invalid modId in its file (not matching standards). Try removing it."
 print(search_content(re, content, output), end="")
 
