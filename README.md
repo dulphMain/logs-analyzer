@@ -23,3 +23,8 @@ Allows to diagnose the most common errors from Minecraft logs. Use the from_url 
 - mod accessing a single threaded resource from multiple threads
 - malformed options.txt
 - client mod on server
+
+## Experimental features :
+- exception during event
+- detection of possible incompatibilities
+- possibly broken mods
