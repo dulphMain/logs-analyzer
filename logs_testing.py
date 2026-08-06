@@ -3,7 +3,7 @@
 @version: 1.0.0
 """
 import regex
-from_url = False #Default mode is False, requiring only regex module
+from_url = input("From URL ? (y/n)") == "y" #Default mode is False, requiring only regex module
 
 class FetchingError(Exception):
 	pass
