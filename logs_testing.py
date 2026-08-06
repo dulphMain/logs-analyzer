@@ -241,5 +241,25 @@ re=r"Failed to create mod instance. ModID: ([a-zA-Z0-9]+), class [a-zA-Z.]+\n+ja
 output="Mod `%GROUP1%` is not meant to be loaded on server. Remove it to fix the crash."
 print(search_content(re, content, output), end="")
 
+#Experimental : possible solution for some crashes (failed to create mod instance)
+re = r"Failed to create mod instance\. ModID: ([\w-]+), class [\w.]+"
+output = "Mod `%GROUP1%` is not loading. Try removing it."
+print(search_content(re, content, output), end="")
+
+#Experimental : possible solution for some crashes (exception during event)
+re = r"Caught exception during event [\w]+ dispatch for modid ([\w-]+)"
+output = "Mod `%GROUP1%` is not loading. Try removing it."
+print(search_content(re, content, output), end="")
+
+#Experimental : detection of possible incompatibilities
+re = r"Error during pre-loading phase: Mod ([\w]+) is incompatible with ([\w]+) ([\w.[\]()+-]+)\s+Currently, ([\w]+) is ([\w.[\]()+-]+)\s+The reason is: ([\w]+) supports ([\w]+) ([\w.[\]()+-]+) (and above|or below)"
+output = "Mod `%GROUP1%` is incompatible with `%GROUP2%` version `%GROUP3%`. Currently, `%GROUP4%` is `%GROUP5%`. `%GROUP6%` supports `%GROUP7%` `%GROUP8%` %GROUP9%"
+print(search_content(re, content, output), end="")
+
+#Experimental : removing possibly broken mods
+re = r"Suppressed: net\.minecraftforge\.fml\.ModLoadingException: ([\w' ]+) \([\w-]+\) encountered an error during the common_setup event phase"
+output = "Mod %GROUP1% encountered an error during loading. Try removing it."
+print(search_content(re, content, output), end="")
+
 if not from_url:
 	opened.close()
