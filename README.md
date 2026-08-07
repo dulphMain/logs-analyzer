@@ -25,6 +25,9 @@ Allows to diagnose the most common errors from Minecraft logs. Use the from_url 
 - client mod on server
 
 ## Experimental features :
+- failed to create mod instance
 - exception during event
 - detection of possible incompatibilities
 - possibly broken mods
+- invalid mod IDs
+- missing mods in jar
