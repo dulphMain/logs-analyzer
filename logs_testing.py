@@ -252,7 +252,7 @@ output = "Mod `%GROUP1%` is not loading. Try removing it."
 print(search_content(re, content, output), end="")
 
 #Experimental : detection of possible incompatibilities
-re = r"Error during pre-loading phase: Mod ([\w]+) is incompatible with ([\w]+) ([\w.[\]()+-]+)\s+Currently, ([\w]+) is ([\w.[\]()+-]+)\s+The reason is: ([\w]+) supports ([\w]+) ([\w.[\]()+-]+) (and above|or below)"
+re = r"Error during pre-loading phase: Mod (\w+) is incompatible with (\w+) ([\w.[\]()+-]+)\s+Currently, (\w+) is ([\w.[\]()+-]+)\s+The reason is: (\w+) supports (\w+) ([\w.[\]()+-]+) (and above|or below)"
 output = "Mod `%GROUP1%` is incompatible with `%GROUP2%` version `%GROUP3%`. Currently, `%GROUP4%` is `%GROUP5%`. `%GROUP6%` supports `%GROUP7%` `%GROUP8%` %GROUP9%"
 print(search_content(re, content, output), end="")
 
@@ -262,8 +262,13 @@ output = "Mod %GROUP1% encountered an error during loading. Try removing it."
 print(search_content(re, content, output), end="")
 
 #Experimental : invalid mod IDs
-re = r"Invalid modId found in file [A-Z]:(\\[a-zA-Z_0-9*. -]+)*\\(.+\.jar,? ?) - ([\w' ]{2,64}) does not match the standard: \^\[a-z\]\[a-z0-9_\]\{1,63\}\$"
+re = r"Invalid modId found in file [A-Z]:(\\[\w*. -]+)*\\(.+\.jar,? ?) - ([\w' ]{2,64}) does not match the standard: \^\[a-z\]\[a-z0-9_\]\{1,63\}\$"
 output = "Mod %GROUP3% has an invalid modId in its file (not matching standards). Try removing it."
+print(search_content(re, content, output), end="")
+
+#Experimental : missing mods in jar
+re = r"net\.minecraftforge\.fml\.ModLoadingException: The Mod File [A-Z]:(\\[\w*. -]+)*\\(.+\.jar,? ?) has mods that were not found"
+output = "Mod %GROUP2% has mods that were not found in its file. Try removing it"
 print(search_content(re, content, output), end="")
 
 if not from_url:
