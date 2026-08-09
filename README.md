@@ -1,5 +1,5 @@
 # logs-analyzer
-Allows to diagnose the most common errors from Minecraft logs. Use the from_url variable to toggle between fetching from a local file and fetching from a discord-paste.curseforge.com or paste.ntms.link URL. Can analyze latest.log and launcher_log.txt files.
+Allows to diagnose the most common errors from Minecraft logs. You can toggle between fetching from a local file and fetching from a discord-paste.curseforge.com or paste.ntms.link URL. Can analyze latest.log and launcher_log.txt files.
 
 ## Detection features :
 - incorrect/missing dependencies
