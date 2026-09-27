@@ -23,6 +23,7 @@ Allows to diagnose the most common errors from Minecraft logs. You can toggle be
 - mod accessing a single threaded resource from multiple threads
 - malformed options.txt
 - client mod on server
+- broken mod
 
 ## Experimental features :
 - failed to create mod instance
