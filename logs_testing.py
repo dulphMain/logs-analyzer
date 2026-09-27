@@ -219,7 +219,7 @@ If these mods are absolutely required you can report the issue to the mod author
 print(search_content(re, content, output), end="")
 
 #Problem 19 (Legacy random source error debugging)
-re = "java.lang.IllegalStateException: Accessing LegacyRandomSource from multiple threads"
+re = r"java\.lang\.IllegalStateException: Accessing LegacyRandomSource from multiple threads"
 ouptut = """Some mod is accessing a single threaded resource from multiple threads, which breaks the game.
 
 Please install https://www.curseforge.com/minecraft/mc-mods/uwrad-forge then cause the issue again and resend logs to make this easier to diagnose."""
@@ -241,14 +241,20 @@ re = r"Failed to create mod instance. ModID: ([a-zA-Z0-9]+), class [a-zA-Z.]+\n+
 output = "Mod `%GROUP1%` is not meant to be loaded on server. Remove it to fix the crash."
 print(search_content(re, content, output), end="")
 
+#Problem 22 (broken mod)
+re = r"Error during pre-loading phase: File mods\\(.+\.jar) is not a valid mod file"
+output = """The mod `%GROUP1%` is broken and will not work until the mod author fixes it.
+You should report the issue to the mod author and update, remove or downgrade it for now."""
+print(search_content(re, content, output), end="")
+
 #Experimental : possible solution for some crashes (failed to create mod instance)
 re = r"Failed to create mod instance\. ModID: ([\w-]+), class [\w.]+"
-output = "Mod `%GROUP1%` is not loading. Try removing it."
+output = "Mod `%GROUP1%` is not loading. Try updating it or removing it."
 print(search_content(re, content, output), end="")
 
 #Experimental : possible solution for some crashes (exception during event)
 re = r"Caught exception during event [\w]+ dispatch for modid ([\w-]+)"
-output = "Mod `%GROUP1%` is not loading. Try removing it."
+output = "Mod `%GROUP1%` is not loading. Try updating it or removing it."
 print(search_content(re, content, output), end="")
 
 #Experimental : detection of possible incompatibilities
@@ -258,18 +264,28 @@ print(search_content(re, content, output), end="")
 
 #Experimental : removing possibly broken mods
 re = r"Suppressed: net\.minecraftforge\.fml\.ModLoadingException: ([\w' ]+) \([\w-]+\) encountered an error during the common_setup event phase"
-output = "Mod %GROUP1% encountered an error during loading. Try removing it."
+output = "Mod %GROUP1% encountered an error during loading. Try updating it or removing it."
 print(search_content(re, content, output), end="")
 
 #Experimental : invalid mod IDs
 re = r"Invalid modId found in file [A-Z]:(\\[\w*. -]+)*\\(.+\.jar,? ?) - ([\w' ]{2,64}) does not match the standard: \^\[a-z\]\[a-z0-9_\]\{1,63\}\$"
-output = "Mod %GROUP3% has an invalid modId in its file (not matching standards). Try removing it."
+output = "Mod %GROUP3% has an invalid modId in its file (not matching standards). Try updating it or removing it."
 print(search_content(re, content, output), end="")
 
 #Experimental : missing mods in jar
-re = r"net\.minecraftforge\.fml\.ModLoadingException: The Mod File [A-Z]:(\\[\w*. -]+)*\\(.+\.jar,? ?) has mods that were not found"
-output = "Mod %GROUP2% has mods that were not found in its file. Try removing it"
+re = r"net\.minecraftforge\.fml\.ModLoadingException: The Mod File [A-Z]:(?:\\[\w*. -]+)*\\(.+\.jar,? ?) has mods that were not found"
+output = "Mod %GROUP1% has mods that were not found in its file. Try updating it or removing it."
 print(search_content(re, content, output), end="")
+
+#Experimental : possibly broken mods
+re = r"Failed to register automatic subscribers\. ModID: ([\w-]+), class [\w.]+"
+output = "Mod `%GROUP1%` is possibly broken. Try updating it or removing it."
+print(search_content(re, content, output), end="")
+
+#Experimental : incompatible version
+#TODO : needs to be expanded
+re = r"Mod .([a-zA-Z0-9]+). requires .([a-zA-Z0-9]+). or\n\s+.Currently, .([a-zA-Z0-9]+). is .([a-zA-Z0-9.+-]+)"
+output = "Mod `%GROUP1%` requires `%GROUP2%`. Currently, `%GROUP4%` is `%GROUP5%`"
 
 if not from_url:
 	opened.close()
